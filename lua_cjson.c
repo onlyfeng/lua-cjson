@@ -709,6 +709,10 @@ static void json_append_object(lua_State *l, json_config_t *cfg,
     strbuf_append_char(json, '}');
 }
 
+#if LUA_VERSION_NUM == 503
+#define lua_objlen(L,i)     lua_rawlen(L, (i))
+#endif
+
 /* Serialise Lua data into JSON string. */
 static void json_append_data(lua_State *l, json_config_t *cfg,
                              int current_depth, strbuf_t *json)
