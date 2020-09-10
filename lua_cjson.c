@@ -102,6 +102,10 @@
 #define json_lightudata_mask(ludata)    (ludata)
 #endif
 
+#if LUA_VERSION_NUM > 501
+#define lua_objlen(L,i)		lua_rawlen(L, (i))
+#endif
+
 static const char * const *json_empty_array;
 static const char * const *json_array;
 
